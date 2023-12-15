@@ -1,6 +1,4 @@
-<?php
-    include "header.php";  
-?>
+<?php include "header.php"; ?>
 
 <section id="hero">
     <div class="hero-text">
@@ -10,7 +8,7 @@
 
 <section id="yachts">
     <div class="yacht-image">
-        <img src="my1.jpg" alt="Coral Yacht" width="100%">
+        <img src="images/my1.jpg" alt="Coral Yacht" width="100%">
     </div>
 </section>
 

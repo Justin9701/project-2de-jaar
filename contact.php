@@ -38,13 +38,13 @@
 
             <div class="social-icons">
                 <a href="https://www.instagram.com/jouwprofiel" target="_blank">
-                    <img src="path_to_instagram_icon.png" alt="Instagram" />
+                    <img src="images/path_to_instagram_icon.png" alt="Instagram" />
                 </a>
                 <a href="https://www.facebook.com/jouwprofiel" target="_blank">
-                    <img src="path_to_facebook_icon.png" alt="Facebook" />
+                    <img src="images/path_to_facebook_icon.png" alt="Facebook" />
                 </a>
                 <a href="https://twitter.com/jouwprofiel" target="_blank">
-                    <img src="path_to_twitter_icon.png" alt="X" />
+                    <img src="images/path_to_twitter_icon.png" alt="X" />
                 </a>
 
             </div>
