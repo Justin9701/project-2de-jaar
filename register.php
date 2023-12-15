@@ -1,6 +1,7 @@
 <?php
+require_once "connect.php";
 // Include header file
-include "header.php"; 
+include "header.php";
 
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = $firstname = $lastname = $address = $email = $number = $birthdate = "";
@@ -8,7 +9,8 @@ $username_err = $password_err = $confirm_password_err = $firstname_err = $lastna
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
+    global $connection;
+
      // Validate firstname
      if(empty(trim($_POST["firstname"]))){
         $firstname_err = "Please enter your first name.";
@@ -62,10 +64,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
         
     // Validate confirm password
-    if(empty(trim($_POST["confirm_password"]))){
+    if(empty(trim($_POST["confirm-password"]))){
         $confirm_password_err = "Please confirm password.";     
     } else{
-        $confirm_password = trim($_POST["confirm_password"]);
+        $confirm_password = trim($_POST["confirm-password"]);
         if(empty($password_err) && ($password != $confirm_password)){
             $confirm_password_err = "Password did not match.";
         }
@@ -80,13 +82,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Prepare a select statement
         $sql = "SELECT id FROM users WHERE username = ?";
         
-        if($stmt = mysqli_prepare($link, $sql)){
+        if($stmt = mysqli_prepare($connection, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "s", $param_username);
-            
+
             // Set parameters
             $param_username = trim($_POST["username"]);
-            
+
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 /* store result */
@@ -111,23 +113,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // Prepare an insert statement
         $sql = "INSERT INTO users (firstname, lastname, username, email, address, number, birthdate, password) 
-        VALUES ( :firstname, :lastname, :username, :email, :address, :number, :birthdate, :password)";
+        VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        if ($stmt = mysqli_prepare($link, $sql)) {
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ssssssss", $param_firstname, $param_lastname, $param_username, $param_email, $param_address, $param_number, $param_birthdate, $param_password);
-
-
+        if ($stmt = mysqli_prepare($connection, $sql)) {
             // Set parameters
             $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+            // Creates a password hash
+            $param_password = password_hash($password, PASSWORD_DEFAULT);
             $param_firstname = $firstname;
             $param_lastname = $lastname;
             $param_address = $address;
             $param_email = $email;
             $param_number = $number;
             $param_birthdate = $birthdate;
-            
+
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ssssssss", $param_firstname, $param_lastname, $param_username, $param_email, $param_address, $param_number, $param_birthdate, $param_password);
+
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Redirect to login page
@@ -142,7 +144,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Close connection
-    mysqli_close($link);
+    mysqli_close($connection);
 }
 ?>
 
@@ -198,12 +200,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </footer>
 
     <script>
-        document.getElementById("registerForm").addEventListener("submit", function (event) {
+        const form = document.getElementById("registerForm");
+        form.addEventListener("submit", function (event) {
             event.preventDefault();
 
             let formData = new FormData(event.target);
 
-            alert('Voornaam: ' + formData.get('firstname') + '\n' +
+            if(confirm('Voornaam: ' + formData.get('firstname') + '\n' +
                 'Achternaam: ' + formData.get('lastname') + '\n' +
                 'Gebruikersnaam: ' + formData.get('username') + '\n' +
                 'E-mailadres: ' + formData.get('email') + '\n' +
@@ -211,7 +214,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 'Telefoonnummer: ' + formData.get('number') + '\n' +
                 'Geboortedatum: ' + formData.get('birthdate') + '\n' +
                 'Wachtwoord: ' + formData.get('password') + '\n' +
-                'Bevestigd Wachtwoord: ' + formData.get('confirm-password'));
+                'Bevestigd Wachtwoord: ' + formData.get('confirm-password'))) {
+                form.submit();
+            } else {
+                alert("opslaan geannuleerd");
+            }
+
+
         });
     </script>
 
