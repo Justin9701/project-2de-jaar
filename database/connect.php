@@ -1,5 +1,5 @@
 <?php
-//databsae
+//database
 $servername = "localhost";
 $database = "coral_jachten";
 $username = "coral_jachten";
