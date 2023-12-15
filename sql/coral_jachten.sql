@@ -18,8 +18,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `coral_jachten`
+-- Create database and user (coral_jachten) with all privileges (if not exist)
 --
+CREATE DATABASE IF NOT EXISTS `coral_jachten` COLLATE 'utf8_general_ci' ;
+GRANT ALL ON `coral_jachten`.* TO 'coral_jachten'@'%' ;
+FLUSH PRIVILEGES ;
 
 -- --------------------------------------------------------
 
@@ -27,7 +30,7 @@ SET time_zone = "+00:00";
 -- Table structure for table `users`
 --
 
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
