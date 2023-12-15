@@ -23,6 +23,54 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $lastname = trim($_POST["lastname"]);
     }
 
+    // Validate email
+    if(empty(trim($_POST["email"]))){
+        $email_err = "Please enter your email.";
+    } else{
+        $email = trim($_POST["email"]);
+    }
+    
+    // Validate address
+    if(empty(trim($_POST["address"]))){
+        $address_err = "Please enter your address.";
+    } else{
+        $address = trim($_POST["address"]);
+    }
+    
+    // Validate number
+    if(empty(trim($_POST["number"]))){
+        $number_err = "Please enter your phone number.";
+    } else{
+        $number = trim($_POST["number"]);
+    }
+    
+    // Validate birthdate
+    if(empty(trim($_POST["birthdate"]))){
+        $birthdate_err = "Please enter your birthdate.";
+    } else{
+        $birthdate = trim($_POST["birthdate"]);
+    }
+    
+        
+    // Validate password
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Please enter a password.";     
+    } elseif(strlen(trim($_POST["password"])) < 6){
+        $password_err = "Password must have atleast 6 characters.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+        
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_password"]))){
+        $confirm_password_err = "Please confirm password.";     
+    } else{
+        $confirm_password = trim($_POST["confirm_password"]);
+        if(empty($password_err) && ($password != $confirm_password)){
+            $confirm_password_err = "Password did not match.";
+        }
+    }
+
     // Validate username
     if(empty(trim($_POST["username"]))){
         $username_err = "Please enter a username.";
