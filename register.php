@@ -1,30 +1,17 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registreren | Coral Jachts</title>
+    <title>Coral Jachts</title>
     <link rel="stylesheet" href="styles/register.css">
 </head>
 
 <body>
-
-<header>
-    <nav>
-        <div id="logo">
-            <img src="images/jachtlogo.jpg" alt="Coral Yachts Logo" width="150">
-        </div>
-        <ul class="navbar">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="jachten.html" class="nav-link">Jachten</a></li>
-            <li><a href="reserveren.html" class="nav-link">Reserveren</a></li>
-            <li><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
-    </nav>
-</header>
-
 <?php
+include_once 'include/header.php';
+
 require_once "database/connect.php";
 
 // Define variables and initialize with empty values
@@ -134,51 +121,51 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-if (!empty($username_err)) : ?>
-    <script>
-        alert("<?php echo $username_err; ?>");
-    </script>
-<?php endif;
+    if(!empty($username_err)) : ?>
+        <script>
+            alert("<?php echo $username_err; ?>");
+        </script>
+    <?php endif;
 
-// Check input errors before inserting in database
-if (empty($password_err) && empty($confirm_password_err) && empty($firstname_err) && empty($lastname_err) && empty($address_err) && empty($email_err) && empty($number_err) && empty($birthdate_err)) {
+    // Check input errors before inserting in database
+    if (empty($password_err) && empty($confirm_password_err) && empty($firstname_err) && empty($lastname_err) && empty($address_err) && empty($email_err) && empty($number_err) && empty($birthdate_err)) {
 
-// Prepare an insert statement
-$sql = "INSERT INTO users (firstname, lastname, username, email, address, number, birthdate, password) 
+        // Prepare an insert statement
+        $sql = "INSERT INTO users (firstname, lastname, username, email, address, number, birthdate, password) 
         VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
 
-if ($stmt = mysqli_prepare($connection, $sql)) {
-// Set parameters
-$param_username = $username;
-// Creates a password hash
-$param_password = password_hash($password, PASSWORD_DEFAULT);
-$param_firstname = $firstname;
-$param_lastname = $lastname;
-$param_address = $address;
-$param_email = $email;
-$param_number = $number;
-$param_birthdate = $birthdate;
+        if ($stmt = mysqli_prepare($connection, $sql)) {
+            // Set parameters
+            $param_username = $username;
+            // Creates a password hash
+            $param_password = password_hash($password, PASSWORD_DEFAULT);
+            $param_firstname = $firstname;
+            $param_lastname = $lastname;
+            $param_address = $address;
+            $param_email = $email;
+            $param_number = $number;
+            $param_birthdate = $birthdate;
 
-// Bind variables to the prepared statement as parameters
-mysqli_stmt_bind_param($stmt, "ssssssss", $param_firstname, $param_lastname, $param_username, $param_email, $param_address, $param_number, $param_birthdate, $param_password);
+            // Bind variables to the prepared statement as parameters
+            mysqli_stmt_bind_param($stmt, "ssssssss", $param_firstname, $param_lastname, $param_username, $param_email, $param_address, $param_number, $param_birthdate, $param_password);
 
-// Attempt to execute the prepared statement
-if (mysqli_stmt_execute($stmt)) : ?>
-    <script>
-        alert("Opslaan gelukt! Je kunt inloggen.");
-        // Redirect to login page
-        window.location = 'login.php';
-    </script>
-<?php else : ?>
-    <script>
-        alert("Opslaan MISLUKT! Probeer het later nog eens ajb.");
-    </script>
-<?php endif;
+            // Attempt to execute the prepared statement
+            if (mysqli_stmt_execute($stmt)) : ?>
+                <script>
+                    alert("Opslaan gelukt! Je kunt inloggen.");
+                    // Redirect to login page
+                    window.location = 'login.php';
+                </script>
+            <?php else : ?>
+                <script>
+                    alert("Opslaan MISLUKT! Probeer het later nog eens ajb.");
+                </script>
+            <?php endif;
 
-    // Close statement
-    mysqli_stmt_close($stmt);
-}
-}
+            // Close statement
+            mysqli_stmt_close($stmt);
+        }
+    }
 
     // Close connection
     mysqli_close($connection);
@@ -250,43 +237,32 @@ if (mysqli_stmt_execute($stmt)) : ?>
     </section>
 </main>
 
-<footer>
-    <!-- Footer content -->
-</footer>
-
+<?php include_once 'include/footer2.php'; ?>
 <script>
     const form = document.getElementById("registerForm");
-form.addEventListener("submit", function (event) {
-    event.preventDefault();
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
 
-    let formData = new FormData(event.target);
+        let formData = new FormData(event.target);
 
-    if (confirm('Voornaam: ' + formData.get('firstname') + '\n' +
-        'Achternaam: ' + formData.get('lastname') + '\n' +
-        'Gebruikersnaam: ' + formData.get('username') + '\n' +
-        'E-mailadres: ' + formData.get('email') + '\n' +
-        'Adres: ' + formData.get('address') + '\n' +
-        'Telefoonnummer: ' + formData.get('number') + '\n' +
-        'Geboortedatum: ' + formData.get('birthdate') + '\n' +
-        'Wachtwoord: ' + formData.get('password') + '\n' +
-        'Bevestigd Wachtwoord: ' + formData.get('confirm-password'))) {
-        form.submit();
-    } else {
-        alert("Opslaan geannuleerd");
-    }
+        if (confirm('Voornaam: ' + formData.get('firstname') + '\n' +
+            'Achternaam: ' + formData.get('lastname') + '\n' +
+            'Gebruikersnaam: ' + formData.get('username') + '\n' +
+            'E-mailadres: ' + formData.get('email') + '\n' +
+            'Adres: ' + formData.get('address') + '\n' +
+            'Telefoonnummer: ' + formData.get('number') + '\n' +
+            'Geboortedatum: ' + formData.get('birthdate') + '\n' +
+            'Wachtwoord: ' + formData.get('password') + '\n' +
+            'Bevestigd Wachtwoord: ' + formData.get('confirm-password'))) {
+            form.submit();
+        } else {
+            alert("Opslaan geannuleerd");
+        }
 
 
-});
-
-// Stel de maximale geboortedatum in op de huidige datum
-document.getElementById('birthdate').max = new Date().toISOString().split('T')[0];
-
-document.getElementById("registerForm").addEventListener("submit", function(event){
-    event.preventDefault();
-
-    // Voeg hier code toe om het formulier te verwerken
-});
+    });
 </script>
 
 </body>
+
 </html>

@@ -17,6 +17,7 @@
             <img src="images/path_to_twitter_icon.png" alt="X" />
         </a>
     </div>
+    <script src="include/footer.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script>
         function sendEmail(event) {
@@ -44,5 +45,12 @@
                 }
             });
         }
+
+        // Script om ervoor te zorgen dat datums in het verleden niet gekozen kunnen worden
+        document.addEventListener('DOMContentLoaded', function () {
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementsByName("departure_date")[0].setAttribute('min', today);
+            document.getElementsByName("return_date")[0].setAttribute('min', today);
+        });
     </script>
 </footer>

@@ -26,9 +26,6 @@
                 
                 <input type="submit" value="Verzenden">
               </form>
-              
-              
-              
         </div>
     </section>
     <?php include_once 'include/footer.php'; ?>

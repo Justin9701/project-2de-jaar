@@ -10,33 +10,7 @@
 
 <body>
 
-<<<<<<< HEAD:Reserveren.html
-    <header>
-        <nav>
-            <div id="logo">
-                <img src="images/jachtlogo.jpg" alt="Coral Yachts Logo" width="150"><!-- Consider adding a logo image -->
-            </div>
-            <ul class="navbar">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="jachten.html" class="nav-link">Jachten</a></li>
-                <li><a href="reserveren.html" class="nav-link active">Reserveren</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-                <li><a href="login.php" class="nav-link">
-                        <img src="images/login-icon.png" alt="Inloggen" class="login-icon">
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <form id="search-form">
-            <input type="text" id="search-input" placeholder="Zoek een Jacht...">
-            <button type="button" id="search-button">Zoeken</button>
-        </form>
-    </header>
-=======
-<?php include_once 'include/header.php'; ?>
->>>>>>> registratie:reserveren.php
-
+    <?php include_once 'include/header.php'; ?>
     <main>
         <section id="reservation">
             <h2>Reserveren</h2>
@@ -139,39 +113,7 @@
         </section>
     </main>
 
-<<<<<<< HEAD:Reserveren.html
-    <footer>
-        <p>Contactinformatie: <a href="mailto:info@coralyachts.com">info@coraljachts.com</a></p>
-    </footer>
-=======
-    <?php include_once 'include/footer.php'; ?>
->>>>>>> registratie:reserveren.php
-
-    <script>
-       document.getElementById('search-button').addEventListener('click', function () {
-            var searchTerm = document.getElementById('search-input').value.toLowerCase();
-            var articles = document.querySelectorAll('#yachts article');
-
-            articles.forEach(function (article) {
-                var yachtType = article.querySelector('.yacht-button').textContent.toLowerCase();
-
-                if (yachtType.includes(searchTerm)) {
-                    article.style.display = 'block';
-                } else {
-                    article.style.display = 'none';
-                }
-            });
-            sessionStorage.setItem('searchterm', searchTerm);
-            location.replace('./Jachten.html');
-        });
-
-        // Script om ervoor te zorgen dat datums in het verleden niet gekozen kunnen worden
-        document.addEventListener('DOMContentLoaded', function () {
-            var today = new Date().toISOString().split('T')[0];
-            document.getElementsByName("departure_date")[0].setAttribute('min', today);
-            document.getElementsByName("return_date")[0].setAttribute('min', today);
-        });
-    </script>
+    <?php include_once 'include/footer2.php'; ?>
 
 </body>
 
