@@ -1,35 +1,7 @@
-<!DOCTYPE html>
-<html lang="nl">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registreren | Coral Jachts</title>
-    <link rel="stylesheet" href="styles/register.css">
-</head>
-
-<body>
-
-<header>
-    <nav>
-        <div id="logo">
-            <img src="images/jachtlogo.jpg" alt="Coral Yachts Logo" width="150">
-        </div>
-        <ul class="navbar">
-            <li><a href="index.html" class="nav-link">Home</a></li>
-            <li><a href="jachten.html" class="nav-link">Jachten</a></li>
-            <li><a href="reserveren.html" class="nav-link">Reserveren</a></li>
-            <li><a href="contact.html" class="nav-link">Contact</a></li>
-            <li><a href="login.php" class="nav-link">
-                    <img src="images/login-icon.png" alt="Inloggen" class="login-icon">
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-
 <?php
-    require_once "connect.php"; 
+require_once "database/connect.php";
+// Include header file
+include "header.php";
 
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = $firstname = $lastname = $address = $email = $number = $birthdate = "";
@@ -255,11 +227,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </main>
 
 <footer>
-    <!-- Footer content -->
+    <p>Contactinformatie: info@coralyachts.com</p>
 </footer>
 
 <script>
-        const form = document.getElementById("registerForm");
+    const form = document.getElementById("registerForm");
     form.addEventListener("submit", function (event) {
         event.preventDefault();
 
@@ -281,16 +253,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     });
-
-    // Stel de maximale geboortedatum in op de huidige datum
-    document.getElementById('birthdate').max = new Date().toISOString().split('T')[0];
-
-    document.getElementById("registerForm").addEventListener("submit", function(event){
-        event.preventDefault();
-
-        // Voeg hier code toe om het formulier te verwerken
-    });
 </script>
 
 </body>
+
 </html>
