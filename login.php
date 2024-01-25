@@ -124,9 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </main>
 
-    <footer>
-        <p>Contactinformatie: info@coralyachts.com</p>
-    </footer>
+    <?php include_once 'include/footer.php'; ?>
 
     <script>
         document.getElementById('search-button').addEventListener('click', function () {
