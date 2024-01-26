@@ -10,19 +10,19 @@
 
 <body>
     <?php include_once 'include/header.php'; ?>
-    <section id="hero">
+    <section class="hero">
         <div class="hero-text">
             <h1>Welkom bij Coral Jachts</h1>
         </div>
     </section>
 
-    <section id="yachts">
+    <section>
         <div class="yacht-image">
             <img src="images/my1.jpg" alt="Coral Yacht" width="100%">
         </div>
     </section>
 
-    <?php include_once 'include/footer2.php'; ?>
+    <?php include_once 'include/footer.php'; ?>
 
 </body>
 

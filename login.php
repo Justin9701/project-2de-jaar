@@ -92,49 +92,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inloggen - Coral Yachts</title>
-    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
     <?php require_once "include/header.php"; ?>
-
-    <main id="login-page">
-        <h2>Inloggen</h2>
-
+    <section class="hero">
+        <h1>Inloggen</h1>
+        <p>Log in om de jacht van je leven te boeken!</p>
         <?php if (!empty($login_err)) {
             echo '<div class="alert alert-danger">' . $login_err . '</div>';
         }
         ?>
-
+    </section>
+    <section>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="input-group">
-                <label for="username">Gebruikersnaam:</label>
-                <input type="text" id="username" name="username"
-                       class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>"
-                       value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            </div>
-            <div class="input-group">
-                <label for="password">Wachtwoord:</label>
-                <input type="password" id="password" name="password"
-                       class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-
-
-            <div class="input-group">
-
-            </div>
-
+            <fieldset>
+                <legend>Inloggen</legend>
+                <div class="input-group">
+                    <label for="username">Gebruikersnaam:</label>
+                    <input type="text" id="username" name="username"
+                           class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>"
+                           value="<?php echo $username; ?>">
+                    <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                </div>
+                <div class="input-group">
+                    <label for="password">Wachtwoord:</label>
+                    <input type="password" id="password" name="password"
+                           class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>">
+                    <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                </div>
+            </fieldset>
             <div class="button-group">
-                <button type="submit" class="yacht-button">Inloggen</button>
+                <button type="submit">Inloggen</button>
                 <a href="register.php" class="register-button yacht-button">Registreren</a>
             </div>
-
-
         </form>
-    </main>
+    </section>
 
-    <?php include_once 'include/footer2.php'; ?>
+    <?php include_once 'include/footer.php'; ?>
 
 </body>
 </html>
