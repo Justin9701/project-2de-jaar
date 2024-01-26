@@ -18,7 +18,7 @@
 
     <section>
         <div class="yacht-image">
-            <img src="images/my1.jpg" alt="Coral Yacht" width="100%">
+            <img src="images/jacht1.jpg" alt="Coral Yacht" width="100%">
         </div>
     </section>
 

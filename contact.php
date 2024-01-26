@@ -40,6 +40,6 @@
         </div>
     </form>
 </section>
-<?php include_once 'include/contact-footer.php'; ?>
+<?php include_once 'include/footer-contact.php'; ?>
 </body>
 </html>

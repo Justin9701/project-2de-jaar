@@ -21,7 +21,7 @@
     </section>
     <section class="yachts">
         <article class="testYachts">
-            <img src="images/my1.jpg" alt="Motorjacht afbeelding" class="yacht-image1">
+            <img src="images/jacht1.jpg" alt="Motorjacht afbeelding" class="yacht-image1">
             <h2>Motoryachten</h2>
             <p>Dit motorjacht biedt een krachtige motor en comfortabele accommodaties voor lange reizen op zee.</p>
             <p><strong>Prijs:</strong> €2.912</p>
@@ -29,7 +29,7 @@
         </article>
 
         <article class="testYachts">
-            <img src="images/my2.jpg" alt="Zeiljacht afbeelding" class="yacht-image2">
+            <img src="images/jacht2.jpg" alt="Zeiljacht afbeelding" class="yacht-image2">
             <h2>Zeilyachten</h2>
             <p>Een elegant zeiljacht dat perfect is voor diegenen die van een traditionele zeilervaring houden.</p>
             <p><strong>Prijs:</strong> €5.450</p>
@@ -37,7 +37,7 @@
         </article>
 
         <article class="testYachts">
-            <img src="images/my3.jpeg" alt="Superyacht afbeelding" class="yacht-image">
+            <img src="images/jacht3.jpeg" alt="Superyacht afbeelding" class="yacht-image">
             <h2>Superyachten</h2>
             <p>Dit superyacht biedt ultieme luxe en faciliteiten voor een uitzonderlijke ervaring op het water.</p>
             <p><strong>Prijs:</strong> €2.520</p>
@@ -45,7 +45,7 @@
         </article>
 
         <article class="testYachts">
-            <img src="images/my4.webp" alt="Luxe jacht afbeelding" class="yacht-image">
+            <img src="images/jacht4.webp" alt="Luxe jacht afbeelding" class="yacht-image">
             <h2>Luxeyachten</h2>
             <p>Een jacht met alle voorzieningen om je reis buitengewoon comfortabel en plezierig te maken.</p>
             <p><strong>Prijs:</strong> €3.000</p>
@@ -53,7 +53,7 @@
         </article>
 
         <article class="testYachts">
-            <img src="images/my5.jpg" alt="Speedboot afbeelding" class="yacht-image5">
+            <img src="images/jacht5.jpg" alt="Speedboot afbeelding" class="yacht-image5">
             <h2>Speedboten</h2>
             <p>Deze speedboot is ontworpen voor snelheid en een opwindende ervaring op het water.</p>
             <p><strong>Prijs:</strong> €3.500</p>
@@ -71,7 +71,6 @@
             console.log(temp)
             if (term && temp) {
                 sessionStorage.removeItem('searchterm')
-                temp = false
                 articles.forEach(function (article) {
                     var yachtType = article.querySelector('h2').textContent.toLowerCase();
                     console.log(yachtType, " ", term)
